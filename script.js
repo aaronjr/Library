@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function(){
      // Object for book
-     function Book(title, author, pages){
+     function Book(title, author, pages, url){
         this.title = title[0].toUpperCase() + title.substring(1)
-        this.author = author[0].toUpperCase() + title.substring(1)
+        this.author = author[0].toUpperCase() + author.substring(1)
         this.pages = pages  
+        this.url = url
         this.read = false
     }
 
@@ -25,18 +26,20 @@ document.addEventListener('DOMContentLoaded', function(){
         let title = document.getElementById('title').value;
         let author = document.getElementById('author').value;
         let pages = document.getElementById('pages').value;
+        let url = document.getElementById('url').value;
 
         // get container
         const container = document.querySelector('.container')
 
         // pass into object
-        const newBook = new Book(title, author, pages)
+        const newBook = new Book(title, author, pages, url)
 
         // get back the object details
         title = newBook.title
         author = newBook.author
         pages = newBook.pages
         read = newBook.read
+        url = newBook.url
         info = newBook.info()
 
         // create element to append to page
@@ -49,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function(){
         bookPages = document.createElement("p")
         bookRead = document.createElement("p")
         bookInfo = document.createElement("p")
+        bookUrl = document.createElement("img")
 
         // set correct text value
         bookTitle.textContent = title
@@ -56,13 +60,16 @@ document.addEventListener('DOMContentLoaded', function(){
         bookPages.textContent = pages
         bookRead.textContent = read
         bookInfo.textContent = info
+        bookUrl.src = url
 
         // add to addBook
+        addBook.appendChild(bookUrl)
         addBook.appendChild(bookTitle)
         addBook.appendChild(bookAuthor)
         addBook.appendChild(bookPages)
         addBook.appendChild(bookRead)
         addBook.appendChild(bookInfo)
+        
 
         // add book to container
         container.appendChild(addBook)
