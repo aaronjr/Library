@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function(){
         let title = newBook.title
         let author = newBook.author
         let pages = newBook.pages
-        let read = newBook.read
+        let read = newBook.read == false ? "Not yet read" : "You've read it";
         let url = newBook.url
 
         // create element to append to page
@@ -85,25 +85,46 @@ document.addEventListener('DOMContentLoaded', function(){
         let bookPages = document.createElement("p")
         let bookRead = document.createElement("p")
         let bookUrl = document.createElement("img")
+        let text  = document.createElement('div')
+        text.classList = "text"
+
+        // div to hold toggle and bin icon
+        let bottom = document.createElement('div')
+        bottom.classList = "bottom"
+
+        // bin icon
+        let bin = document.createElement('div')
+        
+        //let toggle = document.createElement('div')
+        // toggle.
 
         // set correct text value
-        bookTitle.textContent = title
-        bookAuthor.textContent = author
-        bookPages.textContent = pages
+        bookTitle.textContent = `${title}`
+        bookAuthor.textContent = `Written by ${author}`
+        bookPages.textContent = `${pages} pages.`
         bookRead.textContent = read
         bookUrl.src = url
 
         // add to addBook
         addBook.appendChild(bookUrl)
-        addBook.appendChild(bookTitle)
-        addBook.appendChild(bookAuthor)
-        addBook.appendChild(bookPages)
-        addBook.appendChild(bookRead)
+        addBook.appendChild(text)
+        text.appendChild(bookTitle)
+        text.appendChild(bookAuthor)
+        text.appendChild(bookPages)
+        text.appendChild(bookRead)
+        text.appendChild(bottom)
+        bottom.appendChild(bin)
+        // set SVG and Class
+        bin.outerHTML = '<svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z" /></svg>'
+        bin.classList = "bin"
+        
+        // bottom.appendChild(toggle)
 
         // add book to container
         container.appendChild(addBook)
     }
 
+    // add pop up form to input data
     document.querySelector(".add").addEventListener('click', ()=>{
         // make visible and back form to center pop up.
         form.style.display = "flex";
@@ -116,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function(){
         close.style.visibility = "visible";
     })
 
+    // close pop up box
     document.querySelector(".close").addEventListener('click', ()=>{
         // make visible and back form to center pop up.
         form.style.display = "none";

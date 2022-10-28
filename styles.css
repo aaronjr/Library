@@ -41,6 +41,16 @@ body{
 img{
     max-height: 355px;
 }
+.text{
+    margin-top: 10px;
+
+}
+.bottom{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
 .formback{
     display: none;
     visibility: hidden;
