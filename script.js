@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function(){
-     // Object for book
-     function Book(title, author, pages, url){
+   
+
+    // Object for book
+    function Book(title, author, pages, url){
         this.title = title[0].toUpperCase() + title.substring(1)
         this.author = author[0].toUpperCase() + author.substring(1)
         this.pages = pages  
@@ -8,70 +10,69 @@ document.addEventListener('DOMContentLoaded', function(){
         this.read = false
     }
 
-    // create a function for bookx
-    Book.prototype.info = function(){
-        let count = this.pages == 1 ? `${this.pages} page` : `${this.pages} pages`;
-        let read = this.bool ? `you have read` : `you have not read yet`;
-        statement =  `${this.title}, written by ${this.author}. Has ${count} and ${read} `
-        return statement
-    } 
+    // initiate empty library
+    let library = []
 
-    // const theHobbit = new Book("The hobbit", "J.R.R Tolkien", 295, false )
+    // add list of library books to page
+    // if no input, function takes in normal array.
+    function appendBook(Library = library){
+        // get container
+        const container = document.querySelector('.container')
+        // loop through books in library
+        Library.forEach( (newBook) => {
+            console.log(newBook)
+            // get back the object details
+            let title = newBook.title
+            let author = newBook.author
+            let pages = newBook.pages
+            let read = newBook.read
+            let url = newBook.url
 
-    const button = document.querySelector('button')
+            // create element to append to page
+            let addBook = document.createElement("div")
+            addBook.classList = "book"
 
-    // Takes input and adds a book
-    newBook = button.addEventListener('click', function(){
+            // make 'p' for each piece of text
+            let bookTitle = document.createElement("p")
+            let bookAuthor = document.createElement("p")
+            let bookPages = document.createElement("p")
+            let bookRead = document.createElement("p")
+            let bookUrl = document.createElement("img")
+
+            // set correct text value
+            bookTitle.textContent = title
+            bookAuthor.textContent = author
+            bookPages.textContent = pages
+            bookRead.textContent = read
+            bookUrl.src = url
+
+            // add to addBook
+            addBook.appendChild(bookUrl)
+            addBook.appendChild(bookTitle)
+            addBook.appendChild(bookAuthor)
+            addBook.appendChild(bookPages)
+            addBook.appendChild(bookRead)
+
+            // add book to container
+            container.appendChild(addBook)
+        })
+    }
+
+    // Takes input and adds a book to library
+    document.querySelector('button').addEventListener('click', function(){
         // get details from form
         let title = document.getElementById('title').value;
         let author = document.getElementById('author').value;
         let pages = document.getElementById('pages').value;
         let url = document.getElementById('url').value;
 
-        // get container
-        const container = document.querySelector('.container')
-
-        // pass into object
-        const newBook = new Book(title, author, pages, url)
-
-        // get back the object details
-        title = newBook.title
-        author = newBook.author
-        pages = newBook.pages
-        read = newBook.read
-        url = newBook.url
-        info = newBook.info()
-
-        // create element to append to page
-        let addBook = document.createElement("div")
-        addBook.classList = "book"
-
-        // make 'p' for each piece of text
-        bookTitle = document.createElement("p")
-        bookAuthor = document.createElement("p")
-        bookPages = document.createElement("p")
-        bookRead = document.createElement("p")
-        bookInfo = document.createElement("p")
-        bookUrl = document.createElement("img")
-
-        // set correct text value
-        bookTitle.textContent = title
-        bookAuthor.textContent = author
-        bookPages.textContent = pages
-        bookRead.textContent = read
-        bookInfo.textContent = info
-        bookUrl.src = url
-
-        // add to addBook
-        addBook.appendChild(bookUrl)
-        addBook.appendChild(bookTitle)
-        addBook.appendChild(bookAuthor)
-        addBook.appendChild(bookPages)
-        addBook.appendChild(bookRead)
-        addBook.appendChild(bookInfo)
+        // turn details into an object
+        let newBook = new Book(title, author, pages, url)
         
-
-        // add book to container
-        container.appendChild(addBook)
+        // add object to library
+        library.push(newBook)
+        
+        // add book to page
+        appendBook()
     })
 })
