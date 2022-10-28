@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function(){
     // get container
     const container = document.querySelector('.container')
+    const formback = document.querySelector('.formback')
+    const form = document.querySelector('form')
+
 
     // Object for book
     function Book(title, author, pages, url){
@@ -52,6 +55,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
         // add book to page
         appendBook(newBook)
+
+        // clear input field
+        document.getElementById('title').value = ""
+        document.getElementById('author').value = ""
+        document.getElementById('pages').value = ""
+        document.getElementById('url').value = ""
     })
 
     // append books one at a time to the webpage
@@ -93,6 +102,14 @@ document.addEventListener('DOMContentLoaded', function(){
         container.appendChild(addBook)
     }
 
-    // add book to page
+    document.querySelector(".add").addEventListener('click', ()=>{
+        // make visible and back form to center pop up.
+        form.style.display = "flex";
+        form.style.visibility = "visible";
+        formback.style.display = "grid";
+        formback.style.visibility = "visible";
+    })
+
+    // add existing library to page
     appendBook()
 })
