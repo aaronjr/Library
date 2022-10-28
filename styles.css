@@ -109,8 +109,23 @@ h1{
     place-items: center;
 }
 
+.closeHolder{
+    position: relative;
+    top: -20px;
+    left: -20px;
+    background-color: white;
+    height: 30px; 
+    width: 30px;
+    border-radius: 50%;
+    place-items: center;
+    display: none;
+    visibility: hidden;
+}
+
+.close{
+    cursor: pointer;
+}
+
 .add{
     cursor: pointer;
-    width: 100%;
-    height: 100%;
 }

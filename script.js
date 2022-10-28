@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const container = document.querySelector('.container')
     const formback = document.querySelector('.formback')
     const form = document.querySelector('form')
+    const closeHolder = document.querySelector('.closeHolder')
+    const close = document.querySelector('.close')
 
 
     // Object for book
@@ -108,6 +110,22 @@ document.addEventListener('DOMContentLoaded', function(){
         form.style.visibility = "visible";
         formback.style.display = "grid";
         formback.style.visibility = "visible";
+        closeHolder.style.display = "grid";
+        closeHolder.style.visibility = "visible";
+        close.style.display = "block";
+        close.style.visibility = "visible";
+    })
+
+    document.querySelector(".close").addEventListener('click', ()=>{
+        // make visible and back form to center pop up.
+        form.style.display = "none";
+        form.style.visibility = "hidden";
+        formback.style.display = "none";
+        formback.style.visibility = "hidden";
+        closeHolder.style.display = "none";
+        closeHolder.style.visibility = "hidden";
+        close.style.display = "none";
+        close.style.visibility = "hidden";
     })
 
     // add existing library to page
