@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // append books one at a time to the webpage
     function toWeb(newBook, index){
-        console.log(index)
         // get back the object details
         let title = newBook.title
         let author = newBook.author

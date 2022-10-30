@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
 :root{
-    --color: #31572c;
-    --alt-color: #ecf39e;
+    --color: #7ebdc2;
+    --alt-color: #f3dfa2;
 }
 *{
     margin: 0;
@@ -67,13 +67,11 @@ img{
 form{
     display:none;
     visibility: hidden; 
-    background-color: white;
     flex-direction: column;
-    margin:10px;
-    width:min-content;
+    width: min-content;
     padding: 25px 25px;
     border: 5px var(--color) solid;
-    background-color: var(--alt-color);
+    background-image: linear-gradient(to bottom right,var(--alt-color), white);
     border-radius: .5rem;
 }
 form label{
@@ -81,12 +79,29 @@ form label{
 }
 form input {
     margin-bottom: 10px;
+    border-radius: .5rem;
+    border: 1px solid var(--color);
 }
 
+form input{
+    width: 15rem;
+    height: 1.7rem;
+    padding-left: 10px;
+}
+button{
+    height: 3rem;
+    border: solid var(--color) 2px;
+    border-radius: .5rem;
+    background-color: var(--color);
+    margin: 5px 0;
+}
+button:hover{
+    filter: brightness(110%);
+}
 legend{
     margin-bottom: 20px;
     text-align: center;
-    font-size: larger;
+    font-size: xx-large;
 }
 
 .header{
