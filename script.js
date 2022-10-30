@@ -22,7 +22,13 @@ document.addEventListener('DOMContentLoaded', function(){
     // add some books to library before user input
     const set1 = new Book("The Hobbit", "JRR Tolkein", 653, "https://m.media-amazon.com/images/I/8157XzPwdYL._AC_SY679_.jpg")
     const set2 = new Book("Macbeth", "Shakespeare", 200, "https://d1b14unh5d6w7g.cloudfront.net/0198324006.01.S001.LXXXXXXX.jpg?Expires=1667204477&Signature=BLj65Z6OC5x-7Kto3dlLsyGRki~nmPnCpE6Uy0jYOxAPkAlMHV~ihVArQvdrroVDIhfH3GrAUNEIBXcel9uDmrRck8v1i7GLbgJiS65znkIH0K5f4xlZsyaP-28ewdFQl4tO8U0oAzqJZPKTqN2rtkrTKj2L4mwPyB~6WJbcli4_&Key-Pair-Id=APKAIUO27P366FGALUMQ")
-    library.push(set1, set2)
+    set2.read = true
+    const set3 = new Book("Harry Potter", "JK Rowling", 450, "https://m.media-amazon.com/images/I/71NgSjWtp0L.jpg")
+    const set4 = new Book("The Shinning", "Stephen King", 580, "https://images.foyles.co.uk/xlarge/books/img/1/4/4/9781444720723.jpg")
+    set4.read = true
+    const set5 = new Book("East of Croydon", "Sue Perkins", 301, "https://images.foyles.co.uk/xlarge/books/img/0/2/4/9780241360279.jpg")
+    set5.read = true
+    library.push(set1, set2, set3, set4, set5)
 
     // add list of library books to page
     function appendBook(Library = library){
@@ -140,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function(){
         bottom.appendChild(bin)
         bottom.appendChild(toggles)
         // set SVG and Class and index
-        bin.outerHTML = `<svg data-index="${index}" class="bin" style="width:24px;height:24px" viewBox="0 0 24 24"><path data-index="${index}" class="bin" fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"/></svg>`
+        bin.outerHTML = `<svg data-index="${index}" class="bin" style="width:30px;height:30px" viewBox="0 0 24 24"><path data-index="${index}" class="bin" fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"/></svg>`
         // set index number onto dataset
         bin.dataset.index = index
 

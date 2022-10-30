@@ -17,15 +17,16 @@ body{
     grid-template-rows: 100px 1fr;
     justify-content: center;
     background-color: var(--color);
-    font-family:'Poppins', sans-serif;;
+    font-family:'Poppins', sans-serif;
 }
 
 .container{
     margin: 30px;
+    padding-bottom: 30px;
     max-width: 80%;
     display: grid;
     grid-template-columns: repeat(auto-fit, 270px);
-    grid-auto-rows: 500px;
+    grid-auto-rows: 550px;
     gap:15px;
     justify-self: center;
 }
@@ -39,18 +40,23 @@ body{
     background-color: white;
     padding: 10px;
 }
+
+.text > p:first-child{
+    font-size: large;
+}
+
 img{
     max-height: 355px;
 }
 .text{
     margin-top: 10px;
-
 }
 .bottom{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
+    margin-top: 20px;
 }
 .formback{
     display: none;
@@ -194,11 +200,11 @@ h1{
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: var(--color);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px var(--color);
 }
 
 input:checked + .slider:before {
