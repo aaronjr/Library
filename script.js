@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     // Takes input and adds a book to library
-    document.querySelector('button').addEventListener('click', function(){
+    form.addEventListener('submit', function(event){
         // get details from form
         let title = document.getElementById('title');
         let author = document.getElementById('author');
@@ -72,6 +72,8 @@ document.addEventListener('DOMContentLoaded', function(){
         author.value = ""
         pages.value = ""
         url.value = ""
+
+        event.preventDefault();
     })
 
     // append books one at a time to the webpage
@@ -102,9 +104,20 @@ document.addEventListener('DOMContentLoaded', function(){
 
         // bin icon
         let bin = document.createElement('div')
-        
-        //let toggle = document.createElement('div')
-        // toggle.
+
+
+        let toggles = document.createElement('label')
+        toggles.classList = "switch"
+        let checkbox = document.createElement('input')
+        checkbox.type = "checkbox"
+        let span = document.createElement('span')
+        span.classList = "slider round"
+
+        // add to toggles
+        toggles.append(checkbox)
+        toggles.append(span)
+        // add completed switch to bottom section
+
 
         // set correct text value
         bookTitle.textContent = `${title}`
@@ -122,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function(){
         text.appendChild(bookRead)
         text.appendChild(bottom)
         bottom.appendChild(bin)
+        bottom.appendChild(toggles)
         // set SVG and Class
         bin.outerHTML = `<svg data-index="${index}" class="bin" style="width:24px;height:24px" viewBox="0 0 24 24"><path data-index="${index}" class="bin" fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"/></svg>`
 
