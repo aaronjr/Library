@@ -110,12 +110,16 @@ document.addEventListener('DOMContentLoaded', function(){
         toggles.classList = "switch"
         let checkbox = document.createElement('input')
         checkbox.type = "checkbox"
+        checkbox.checked = newBook.read 
         let span = document.createElement('span')
         span.classList = "slider round"
+        span.setAttribute("index", index)
+
 
         // add to toggles
         toggles.append(checkbox)
         toggles.append(span)
+        
         // add completed switch to bottom section
 
 
@@ -163,8 +167,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // close pop up box
     document.querySelector(".close").addEventListener('click', () => closePopup())    
 
-    // add existing library to page
-    appendBook()
+   
 
     // check for bin, not intially
     document.addEventListener('click', (event)=>{
@@ -172,8 +175,17 @@ document.addEventListener('DOMContentLoaded', function(){
             library.splice(event.target.dataset.index, 1)
             appendBook(library)
         }
-        // else if(){
-
-        //}
+        else if(event.target.className == "slider round"){
+            let prev = event.target.previousElementSibling.checked;
+            let indexChecked = event.target.attributes.index.value;
+            book = library[indexChecked]
+            book.read = prev == true ? false : true;
+            checkbox = document.querySelector( "input[type=checkbox]")
+            checkbox.checked = book.read
+            appendBook()
+            console.log(library)
+        }
     })
+     // add existing library to page
+     appendBook()
 })
