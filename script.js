@@ -73,6 +73,8 @@ document.addEventListener('DOMContentLoaded', function(){
         pages.value = ""
         url.value = ""
 
+        // stop from submitting and refreshing page
+        // and loosing the current library as not saved anywhere
         event.preventDefault();
     })
 
@@ -95,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function(){
         let bookPages = document.createElement("p")
         let bookRead = document.createElement("p")
         let bookUrl = document.createElement("img")
+        // holder for bottom of the card on the page
         let text  = document.createElement('div')
         text.classList = "text"
 
@@ -105,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function(){
         // bin icon
         let bin = document.createElement('div')
 
-
+        // create a switch
         let toggles = document.createElement('label')
         toggles.classList = "switch"
         let checkbox = document.createElement('input')
@@ -115,13 +118,9 @@ document.addEventListener('DOMContentLoaded', function(){
         span.classList = "slider round"
         span.setAttribute("index", index)
 
-
-        // add to toggles
+        // add to switches
         toggles.append(checkbox)
         toggles.append(span)
-        
-        // add completed switch to bottom section
-
 
         // set correct text value
         bookTitle.textContent = `${title}`
@@ -140,12 +139,10 @@ document.addEventListener('DOMContentLoaded', function(){
         text.appendChild(bottom)
         bottom.appendChild(bin)
         bottom.appendChild(toggles)
-        // set SVG and Class
+        // set SVG and Class and index
         bin.outerHTML = `<svg data-index="${index}" class="bin" style="width:24px;height:24px" viewBox="0 0 24 24"><path data-index="${index}" class="bin" fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"/></svg>`
-
+        // set index number onto dataset
         bin.dataset.index = index
-
-        // bottom.appendChild(toggle)
 
         // add book to container
         container.appendChild(addBook)
@@ -167,25 +164,32 @@ document.addEventListener('DOMContentLoaded', function(){
     // close pop up box
     document.querySelector(".close").addEventListener('click', () => closePopup())    
 
-   
-
-    // check for bin, not intially
+    // check for items, not intially set on page
     document.addEventListener('click', (event)=>{
+        // check for click on bin
         if(event.target.className.baseVal == "bin"){
+            // remove the correct book
             library.splice(event.target.dataset.index, 1)
+            // reload library
             appendBook(library)
         }
+        // check for click on switch
         else if(event.target.className == "slider round"){
+            // check for if switch is currenlt on or off
             let prev = event.target.previousElementSibling.checked;
+            // check for index in library
             let indexChecked = event.target.attributes.index.value;
+            // get book and set to read or not read
             book = library[indexChecked]
             book.read = prev == true ? false : true;
+            // update checkbox
             checkbox = document.querySelector( "input[type=checkbox]")
             checkbox.checked = book.read
+            // load page
             appendBook()
-            console.log(library)
         }
     })
-     // add existing library to page
+
+     // add library to page
      appendBook()
 })
