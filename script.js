@@ -56,32 +56,55 @@ document.addEventListener('DOMContentLoaded', function(){
         close.style.visibility = "hidden";
     }
 
+    function check(){
+        if(this.id == "pages" && this.validity.rangeUnderflow){
+            this.nextElementSibling.textContent = "Minimum 10 pages";
+            this.nextElementSibling.className = "error active";
+        }else if(this.validity.valueMissing){
+            this.nextElementSibling.textContent = "Give me some info";
+            this.nextElementSibling.className = "error active";
+        }else{
+            this.nextElementSibling.textContent = "";
+            this.nextElementSibling.className = "error";
+        }
+    }
+
+    // get details from form
+    const title = document.getElementById('title');
+    const author = document.getElementById('author');
+    const pages = document.getElementById('pages');
+    const url = document.getElementById('url');
+
+    title.addEventListener('focusout', check.bind(title))
+    author.addEventListener('focusout', check.bind(author))
+    pages.addEventListener('focusout', check.bind(pages))
+    url.addEventListener('focusout', check.bind(url))
+
     // Takes input and adds a book to library
     form.addEventListener('submit', function(event){
-        // get details from form
-        let title = document.getElementById('title');
-        let author = document.getElementById('author');
-        let pages = document.getElementById('pages');
-        let url = document.getElementById('url');
+        if(!form. checkValidity()){
+            event.preventDefault();
+        }else{
+            // turn details into an object
+            let newBook = new Book(title.value, author.value, pages.value, url.value)
+                    
+            // add object to library
+            library.push(newBook)
 
-        // turn details into an object
-        let newBook = new Book(title.value, author.value, pages.value, url.value)
+            // add book to page
+            appendBook(library)
+            closePopup()
+            // clear input field
+            title.value = ""
+            author.value = ""
+            pages.value = ""
+            url.value = ""
+
+            // stop from submitting and refreshing page
+            // and loosing the current library as not saved anywhere
+            event.preventDefault();
+        }
         
-        // add object to library
-        library.push(newBook)
-
-        // add book to page
-        appendBook(library)
-        closePopup()
-        // clear input field
-        title.value = ""
-        author.value = ""
-        pages.value = ""
-        url.value = ""
-
-        // stop from submitting and refreshing page
-        // and loosing the current library as not saved anywhere
-        event.preventDefault();
     })
 
     // append books one at a time to the webpage
