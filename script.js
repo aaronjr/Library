@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function(){
     title.addEventListener('focusout', check.bind(title))
     author.addEventListener('focusout', check.bind(author))
     pages.addEventListener('focusout', check.bind(pages))
+    pages.addEventListener('keyup', check.bind(pages))
     url.addEventListener('focusout', check.bind(url))
 
     // Takes input and adds a book to library
